@@ -1,30 +1,26 @@
-# KubPi : déploiement d'un cluster k8s sur raspberry
+# KubePI : 
 
-Structure de Hosts.yml
+ Hosts.yml
 
 ```
 all:
   vars:
-    ip_master: 192.168.1.25
+    ip_master: 192.168.86.132
   children:
     nodes:
       hosts:
         pi1:
-          ansible_host: 192.168.1.20
+          ansible_host: 192.168.86.133
         pi2:
-          ansible_host: 192.168.1.21
+          ansible_host: 192.168.86.139
         pi3:
-          ansible_host: 192.168.1.22
+          ansible_host: 192.168.86.144
         pi4:
-          ansible_host: 192.168.1.23
-        pi5:
-          ansible_host: 192.168.1.24
-        pi6:
-          ansible_host: 192.168.1.25
+          ansible_host: 192.168.86.143
           master: true
 ```
 
-Playbook d'installation
+Playbook Installation 
 
 ```
 - hosts: master
@@ -32,7 +28,7 @@ Playbook d'installation
     - kubpi
 ```
 
-Création du cluster
+Create the cluster
 
 ```
 ansible-playbook -i hosts.yml -u pi -k -b install-kub.yml
@@ -44,7 +40,7 @@ Reset all
 ansible-playbook -i hosts.yml -u pi -k -b reset-all.yml
 ```
 
-Playbook de reset du cluster
+Playbook to reset the cluster
 
 ```
 - hosts: all
